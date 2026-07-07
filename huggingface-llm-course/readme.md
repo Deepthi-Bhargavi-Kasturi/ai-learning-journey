@@ -1,17 +1,53 @@
+# Engineering Journal
 
-<h1>Transformers</h1>
+## 📅 Date
+2026-07-06
 
-<p>We can select the model to be used in a pipeline for a specific task.</p>
+## 📚 Topic
+Transfer Learning & Fine-Tuning
 
-from transformers import pipeline
-generator = pipeline("text-generation", model="HuggingFaceTB/SmolLM2-360M")
+## 💡 What I Learned
 
-generator(
-  "Cats are cute"
-  max_new_tokens=25,
-  num_return_sequences=2
-)
+Today I learned why modern AI models are usually **fine-tuned** instead of being trained from scratch.
 
+A base model starts with random weights and requires massive datasets, significant compute resources, and weeks (or even months) of training. Fine-tuning, on the other hand, starts with a **pre-trained model** that has already learned language patterns, grammar, and statistical relationships from large datasets.
 
-model can be selected for a specific task and also languages can be selected from model <a href="https://huggingface.co/models?pipeline_tag=text-generation&language=ja,fr,en&sort=trending">hub</a>
+Because of this prior knowledge:
+- Less task-specific data is required.
+- Training is much faster.
+- Compute requirements are lower (often a single GPU is sufficient).
+- The environmental impact is significantly lower than training a model from scratch.
 
+## 🔍 Key Concepts
+
+- Base Model
+- Pre-trained Model
+- Transfer Learning
+- Fine-Tuning
+- Weights
+- Self-Supervised Learning
+- Causal Language Modeling
+- Masked Language Modeling
+
+## ✨ Interesting Insights
+
+- Fine-tuning initializes a model with **pre-trained weights** instead of random weights.
+- Pre-trained models can transfer their learned language understanding to new tasks.
+- Biases present in the original training data can also be transferred.
+- Fine-tuning usually improves performance for a specific task compared to using the base pre-trained model directly.
+- GPT models are trained using **causal language modeling** (predict the next token).
+- BERT is trained using **masked language modeling** (predict missing tokens).
+
+## 🌱 Sustainability Note
+
+Fine-tuning is more sustainable because it reuses an existing model instead of training one from scratch, reducing compute, energy consumption, and training time.
+
+## 🤔 Questions
+
+- What exactly happens to the Transformer body during fine-tuning?
+- Which layers are frozen and which are updated?
+- Why is only the task-specific head replaced?
+
+## 🚀 Next Step
+
+Understand the architecture of a Transformer model, specifically the **body** and **head**, and how they are used during fine-tuning.

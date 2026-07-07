@@ -1,6 +1,8 @@
 # Engineering Journal
 
-## 📅 Date 2026-07-06
+## 📅 Date 
+
+2026-07-06
 
 ## 📚 Topic
 Transfer Learning & Fine-Tuning

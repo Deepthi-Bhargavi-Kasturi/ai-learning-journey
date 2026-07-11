@@ -1,21 +1,78 @@
 # Engineering Journal
 
-## Day 1 
+## Day 1: Transfer Learning & Transformer Architecture
 
-Transfer Learning & Transformer Architecture
+### Transfer Learning vs. Pretraining
+- Pretraining: base model trained from scratch, random initial weights,
+  massive datasets, huge compute/energy cost.
+- Transfer learning / fine-tuning: start from a pretrained model (already
+  has statistical/linguistic understanding), then train further on a
+  smaller, task-specific dataset. Much lower compute cost, can often
+  be done on a single GPU.
+- Rule of thumb: the pretrained model you choose should be reasonably
+  close in domain/language to your target task.
 
-Studied the difference between pretraining (training from scratch on massive
-data) and fine-tuning (adapting a pretrained model to a specific task) —
-and why fine-tuning is far more compute/energy efficient.
+### Model "Head" vs. "Body"
+- Body: the backbone — does the actual pattern analysis, statistical
+  understanding of language. This is what gets reused from the
+  pretrained model.
+- Head: the task-specific output layer (classification/prediction layer).
+  Swapped out and retrained for your specific task.
 
-Also covered core transformer concepts: encoder vs. decoder, self-attention
-vs. masked self-attention, model "head" vs. "body," and the distinction
-between architecture (BERT) and checkpoint (bert-base-cased).
+### Architecture vs. Checkpoint
+- Architecture = the skeleton/blueprint (e.g. BERT — defines components,
+  operations, how they connect).
+- Checkpoint = a specific set of trained weights for that architecture
+  (e.g. bert-base-cased — the actual saved model).
 
-**Key takeaway:** In an encoder-decoder model, the encoder output represents
-the *source* sentence and feeds the decoder's cross-attention layer, while
-the decoder's own input is the *target* sentence (shifted right), feeding
-its masked self-attention layer. These are two distinct signals, not one.Transfer Learning & Transformer Architecture
+### Training Objectives
+- Causal Language Modeling (CLM): predicts the next word, one direction
+  only. Used for text generation. Example: GPT-2.
+- Masked Language Modeling (MLM): given a sentence with a word masked
+  out, predicts the missing word using context from both sides.
+  Example: BERT.
+
+### Transformer Architecture: Encoder vs. Decoder
+- Encoder: converts input text into vector embeddings (mathematical
+  representation capturing grammar, word relationships, meaning).
+  Bidirectional — reads the full sentence left-to-right and right-to-left.
+  Uses self-attention (relating words within the same sentence).
+- Decoder: generates output one word at a time (autoregressive).
+  Unidirectional — can only see words it has already generated, not
+  future ones. Uses masked self-attention (future tokens hidden).
+
+### How Encoder + Decoder Work Together (translation example)
+- Encoder takes the source sentence (e.g. English) → outputs embeddings
+  representing its meaning.
+- Decoder receives two separate inputs:
+  1. Its own target sequence so far (e.g. Japanese, shifted right with
+     a start token) → goes into masked self-attention.
+  2. The encoder's output (source sentence meaning) → goes into a
+     separate cross-attention layer.
+- At step 1, the decoder has no prior generated words yet, but it does
+  have full access to the encoder's output via cross-attention — so
+  the first word is predicted mainly from the source sentence meaning,
+  not from the start token itself (the start token is just a
+  positional/structural marker, not a meaningful word).
+- From step 2 onward, the decoder also conditions on its own
+  previously generated words.
+
+### Attention
+- Tells the model how much weight/focus to give each word relative to
+  every other word, to build context.
+- Example: translating "you like this course" into German — the
+  translation of "you," "like" depends on grammatical gender/formality
+  rules, but "course" itself may be largely irrelevant to that specific
+  word's translation. Attention lets the model focus only on what's
+  relevant for each prediction.
+
+### Encoder-only vs. Decoder-only Models
+- Encoder-only (BERT): reads full sentence both directions, good for
+  understanding tasks like sentiment analysis — output space is fixed
+  (e.g. positive/negative), no generation involved.
+- Decoder-only (GPT/ChatGPT): autoregressive, generates one token at a
+  time based on the prompt + its own previous outputs, never knows the
+  next word in advance.
 
 ## 📅 Date 
 

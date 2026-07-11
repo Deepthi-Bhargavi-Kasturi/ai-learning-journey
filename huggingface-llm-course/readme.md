@@ -2,7 +2,7 @@
 
 ## Day 1 
 
-Date 2026-07-11:: Transfer Learning & Transformer Architecture
+Transfer Learning & Transformer Architecture
 
 Studied the difference between pretraining (training from scratch on massive
 data) and fine-tuning (adapting a pretrained model to a specific task) —

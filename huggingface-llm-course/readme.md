@@ -1,5 +1,22 @@
 # Engineering Journal
 
+## Date 2026-07-11
+
+Day 1: Transfer Learning & Transformer Architecture
+
+Studied the difference between pretraining (training from scratch on massive
+data) and fine-tuning (adapting a pretrained model to a specific task) —
+and why fine-tuning is far more compute/energy efficient.
+
+Also covered core transformer concepts: encoder vs. decoder, self-attention
+vs. masked self-attention, model "head" vs. "body," and the distinction
+between architecture (BERT) and checkpoint (bert-base-cased).
+
+**Key takeaway:** In an encoder-decoder model, the encoder output represents
+the *source* sentence and feeds the decoder's cross-attention layer, while
+the decoder's own input is the *target* sentence (shifted right), feeding
+its masked self-attention layer. These are two distinct signals, not one.Transfer Learning & Transformer Architecture
+
 ## 📅 Date 
 
 2026-07-06

@@ -1,5 +1,24 @@
 # Engineering Journal
 
+## Day 2: How Transformers Solve Tasks (short session)
+
+Light day due to work, but started a new section on how transformer-based
+models actually solve tasks under the hood.
+
+Core idea: every model follows the same general pattern — input → process
+→ output. What differs between tasks/models is (1) how data is prepared,
+(2) which transformer architecture variant is used, and (3) how output is
+generated.
+
+Language models are a *subset* of transformer models, trained to predict
+the probability of a word given its surrounding context (via CLM or MLM,
+covered Day 1).
+
+Three architecture types exist — encoder-only, decoder-only, encoder-decoder
+— and the right one depends on the task. E.g., decoder-only (GPT) fits text
+generation. Understanding *why* a given architecture suits a given task is
+the real goal here, not just memorizing which model uses which.
+
 ## Day 1: Transfer Learning & Transformer Architecture
 
 ### Transfer Learning vs. Pretraining

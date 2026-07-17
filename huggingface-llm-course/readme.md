@@ -1,5 +1,22 @@
 # Engineering Journal
 
+## Day 3: Tokenization
+
+Text can't be fed to a model directly — tokenization is the first step,
+breaking text into smaller units (tokens): words, subwords, punctuation,
+or characters.
+
+Each model has a fixed vocabulary list (all tokens its algorithm can
+produce), built from the training data *before* training starts, with a
+fixed size limit (e.g. 50k tokens).
+
+Flow: input text → split into tokens → each token mapped to a unique
+integer ID (via vocabulary lookup) → ID array fed into the embedding layer.
+
+**Key point:** the integer IDs themselves carry no meaning or relationship
+— they're just index lookups. Actual meaning/context is derived later, by
+the embedding layer.
+
 ## Day 2: How Transformers Solve Tasks (short session)
 
 Light day due to work, but started a new section on how transformer-based

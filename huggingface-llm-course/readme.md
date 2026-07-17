@@ -1,5 +1,27 @@
 # Engineering Journal
 
+## Day 4: Embeddings, Positional Encoding & Masked Self-Attention
+
+Explored token limits (vocab size) as a hyperparameter tradeoff: smaller
+vocab → more character/subword splitting, slower processing, smaller
+embedding matrix; larger vocab → can store whole/rare words, but bigger
+matrix and more memory.
+
+Embedding layer = a lookup matrix; each token ID maps to a row = a dense
+vector (coordinates in multi-dimensional space). Semantically similar
+words end up geometrically close (e.g. dog/cat near each other, car far).
+These positions start random and get adjusted during training.
+
+Positional encoding = a separate vector representing a token's position
+in the sequence, added to its token embedding. Note: this is generated
+differently across models — the original Transformer used a fixed
+sinusoidal formula, while GPT-2 uses *learned* positional embeddings
+(trained like any other weight).
+
+GPT-2 pipeline: text → BPE tokenization → token embedding lookup →
+add positional embedding → feed into decoder blocks (masked self-attention,
+using a binary mask so tokens can't attend to future positions).
+
 ## Day 3: Tokenization
 
 Text can't be fed to a model directly — tokenization is the first step,

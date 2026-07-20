@@ -1,5 +1,25 @@
 # Engineering Journal
 
+## Day 5 & 6 – Decoder, Language Modeling Head & Training Pipeline
+
+## 📚 Topic
+
+- Decoder
+- Masked Self-Attention
+- Hidden States
+- Language Modeling Head
+- Logits
+- Softmax
+- Cross Entropy Loss
+
+---
+
+Today I understood how a decoder-only transformer (such as GPT-2) predicts the next token. 
+
+The decoder receives contextual embeddings and uses masked self-attention so each token can only attend to previous tokens. Instead of producing words directly, the decoder outputs hidden state vectors representing the context and meaning of the sequence. 
+
+The final hidden state is passed to the Language Modeling Head, which converts it into vocabulary logits. After applying Softmax, the model obtains probabilities for every vocabulary token, and a sampling strategy selects the next token. During training, cross-entropy loss compares the predicted token distribution with the correct labels, and backpropagation updates the model weights.
+
 ## Day 4: Embeddings, Positional Encoding & Masked Self-Attention
 
 Explored token limits (vocab size) as a hyperparameter tradeoff: smaller

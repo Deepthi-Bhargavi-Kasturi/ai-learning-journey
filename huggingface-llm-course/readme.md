@@ -2,8 +2,6 @@
 
 ## Day 5 & 6 – Decoder, Language Modeling Head & Training Pipeline
 
-## 📚 Topic
-
 - Decoder
 - Masked Self-Attention
 - Hidden States

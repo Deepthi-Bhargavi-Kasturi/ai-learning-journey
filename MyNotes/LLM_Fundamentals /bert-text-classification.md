@@ -141,3 +141,11 @@ Softmax converts all logits into probabilities between 0 and 1 that sum to 1. A 
 **Note**: softmax is always used for multi-class classification (where an input belongs to exactly one category) but **not** multi-label classification where an input can be both politics and sports. For this sigmoid is used.
 
 
+## References
+
+- https://huggingface.co/learn/llm-course/chapter1/5
+- https://mbrenndoerfer.com/writing/masked-language-modeling-bidirectional-understanding-bert
+- https://medium.com/@sue_nlp/what-is-the-softmax-function-used-in-deep-learning-illustrated-in-an-easy-to-understand-way-8b937fe13d49
+- https://www.geeksforgeeks.org/deep-learning/feedforward-neural-network/
+
+

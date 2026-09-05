@@ -138,4 +138,6 @@ Probability:         0.70     0.26    0.002      0.035
 
 Softmax converts all logits into probabilities between 0 and 1 that sum to 1. A higher logit receives a higher probability, relative to the other logits. For `Cats are cute and they like to eat [MASK]`, `fish` has the highest probability, so it would be the model's most likely prediction. These numbers are illustrative.
 
+**Note**: softmax is always used for multi-class classification (where an input belongs to exactly one category) but **not** multi-label classification where an input can be both politics and sports. For this sigmoid is used.
+
 

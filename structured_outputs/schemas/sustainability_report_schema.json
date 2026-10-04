@@ -1,0 +1,57 @@
+{
+    "type": "object",
+    "required": [
+        "company_name",
+        "reporting_year",
+        "total_emissions_tco2e",
+        "reporting_status",
+        "sites"
+    ],
+    "properties": {
+        "company_name": {
+            "type": "string"
+        },
+        "reporting_year": {
+            "type": "integer",
+            "minimum": 2000,
+            "maximum": 2100
+        },
+        "total_emissions_tco2e": {
+            "type": "number",
+            "minimum": 0
+        },
+        "renewable_energy_percent": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+        },
+        "reporting_status": {
+            "type": "string",
+            "enum": ["draft", "reviewed", "published"]
+        },
+        "is_third_party_verified": {
+            "type": "boolean"
+        },
+        "sites": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 10,
+            "items": {
+                "type": "object",
+                "required": ["site_name", "country", "annual_energy_kwh"],
+                "properties": {
+                    "site_name": {
+                        "type": "string"
+                    },
+                    "country": {
+                        "type": "string"
+                    },
+                    "annual_energy_kwh": {
+                        "type": "number",
+                        "minimum": 0
+                    }
+                }
+            }
+        }
+    }
+}

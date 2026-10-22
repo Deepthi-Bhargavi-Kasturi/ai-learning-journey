@@ -1,0 +1,35 @@
+{
+    "company_name": "GreenLeaf Foods",
+    "report_id": "SUST-2025-0042",
+    "reporting_year": 2025,
+    "total_emissions_tco2e": 12450.75,
+    "renewable_energy_percent": 62.5,
+    "reporting_status": "reviewed",
+    "is_third_party_verified": true,
+    "sites": [
+        {
+            "site_name": "Bengaluru Office",
+            "country": "India",
+            "annual_energy_kwh": 85000.0
+        },
+        {
+            "site_name": "Chennai Factory",
+            "country": "India",
+            "annual_energy_kwh": 350500
+        }
+    ],
+    "emissions_source": {
+        "kind": "service",
+        "service_name": "Carbon Footprint Audit",
+        "service_hours": 12
+    },
+    "evidence": {
+        "document_id": "SUSTAINABILITY-REPORT-2025",
+        "page": 34
+    },
+    "verified_metric": {
+        "metric_name": "Scope 1 emissions",
+        "value_tco2e": 125.5,
+        "verification_status": "verified"
+    }
+}

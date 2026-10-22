@@ -47,3 +47,77 @@ test_jsonSchemaValidator.py:22: AssertionError
 =========================================================================================================== short test summary info ===========================================================================================================
 FAILED test_jsonSchemaValidator.py::test_valid_report[sustanability_invalid_report.json] - AssertionError: sustanability_invalid_report.json failed: ['.company_name: expected string, got int', '.reporting_year: expected integer, got bool', '.total_emissions_tco2e: -50 is less than minimum 0', '.renewable_energy_percent: 120...
 =================================================================================================== 1 failed, 1 passed, 1 warning in 0.07s ====================================================================================================
+
+
+#Exercie 03: Constraint Decoding
+
+- After this:
+{"company_name": "GreenLeaf Foods"
+the value is complete. The next token should be:
+, or }
+—not :. A colon follows a completed key, not a completed value.
+
+# Constrained Decoding Simulator
+
+A small educational simulator for understanding how structured LLM output can be constrained during generation.
+
+Given a JSON Schema and a fake vocabulary of 100 tokens, the simulator walks through partial JSON states and identifies which tokens are valid next. All other vocabulary tokens are treated as masked/blocked.
+
+## What it demonstrates
+
+- JSON generation one step at a time
+- Parser state such as object keys, colons, values, commas, and closing braces
+- Schema-aware token restrictions for strings, integers, numbers, booleans, and arrays
+- Required-field checks
+- `minItems` and `maxItems` array constraints
+- Invalid property-name handling
+- End-of-sequence detection using `<EOS>`
+- Percentage of the vocabulary valid at each generation step
+
+Example output:
+
+```text
+Partial JSON: {"reporting_year":
+
+Valid next tokens:
+['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+
+Valid vocabulary: 10 / 100
+Percentage valid: 10.00%
+```
+
+## How it works
+
+```text
+Partial JSON
+    +
+Parser state
+    +
+JSON Schema rules
+    ↓
+Allowed next tokens
+    ↓
+Intersect with the 100-token vocabulary
+    ↓
+Masked valid-token list and percentage
+```
+
+## Run
+
+From the `structured_outputs` directory:
+
+```bash
+python3 exercises/03_constraint_decoding.py
+```
+
+## Current scope and limitations
+
+This is an educational prototype, not a production constrained-decoding engine.
+
+It focuses on a selected valid generation path for the sustainability-report schema. It does not yet cover every JSON Schema feature or every JSON edge case, including arbitrary property order, escaped-string edge cases, all polymorphic schemas (`oneOf` / `anyOf`), regex patterns, enums, and real tokenizer behavior.
+
+Real LLM tokenizers also use variable-length tokens rather than one-character tokens. The 100-token vocabulary here is deliberately simplified to make masking behavior easy to observe.
+
+## Key learning
+
+Structured output is not only post-generation validation. A constrained decoder can restrict the model during generation so that invalid tokens are unavailable at each step.

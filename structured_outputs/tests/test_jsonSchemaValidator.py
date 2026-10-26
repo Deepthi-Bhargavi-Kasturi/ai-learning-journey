@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from json_schema_validator import validate_schema
+from build_it_practise.json_schema_validator import validate_schema
 import pytest
 
 #to fecth all the JSON files under tests folder

@@ -2,13 +2,15 @@
 class SchemaField :
 
     #constructor - assigning starting values to the newly created objects
-    def __init__(self, field_type, required=True, default=None, enum=None, minimum=None, maximum=None):
+    def __init__(self, field_type, required=True, default=None, enum=None, minimum=None, maximum=None, items=None, properties=True):
         self.field_type = field_type
         self.required = required
         self.default = default
         self.enum = enum
         self.minimum = minimum
         self.maximum = maximum
+        self.properties = properties
+        self.items = items
 
 # creating schema object
 def python_type_to_schema(field) :
@@ -28,9 +30,14 @@ def python_type_to_schema(field) :
         schema["type"] = type_map[field.field_type]
     elif field.field_type == list :
         schema["type"] = "array"
-        schema["items"] = {"type": "string"}
+        if field.items is not None :
+            schema["items"] = python_type_to_schema(field.items)
+        #schema["items"] = {"type": "string"} -- it is hard coded. Made changes to make it dynamic.
     elif isinstance(field.field_type, dict) :
-        schema = field.field_type
+        #schema = field.field_type 
+        schema = dict(field.field_type) #makes a copy so original stays untouched
+    else : #without this if any type that doesn't match above conditions passes through and schema stays {}
+        raise ValueError(f"unsupported type {field.field_type}")
 
     if field.enum :
         schema["enum"] = field.enum
@@ -38,9 +45,9 @@ def python_type_to_schema(field) :
         schema["minimum"] = field.minimum
     if field.maximum is not None : 
         schema["maximum"] = field.maximum
+    
 
     return schema
-
 
 def model_to_schema(name, fields) : 
     properties = {}
@@ -48,6 +55,7 @@ def model_to_schema(name, fields) :
 
     for field_name, field in fields.items() :
         properties[field_name] = python_type_to_schema(field)
+
 
         if field.required :
             required.append(field_name)

@@ -11,7 +11,7 @@ def validate_schema(data, schema) :
     return errors
 
 def _validate(data, schema, path, errors) : 
-   
+    
     schema_type = schema.get("type") # string / number / object / arrays etc
     #print(f" ============ schema  =  {schema_type}============== ")
 
@@ -22,7 +22,7 @@ def _validate(data, schema, path, errors) :
 
         for key in schema.get("required", []):
             if key not in data:
-                errors.append(f"{path}.{key} : required field missing")
+                errors.append(f"{path}.{key}: required field missing")
 
         
 
@@ -31,14 +31,14 @@ def _validate(data, schema, path, errors) :
             if key in properties :
                 _validate(value, properties[key], f"{path}.{key}", errors)
             else :
-                errors.append(f"{path}.{key} : Additional field in data")
+                errors.append(f"{path}.{key}: Additional field in data")
 
 
     #schema["type"]     what we expect: "array"
     #data               what we received: perhaps a list, string, number, etc.
     elif schema_type == "array" :
         if not isinstance(data, list):
-            errors.append(f"{path} expected list, got {type(data).__name__}")
+            errors.append(f"{path}: expected list, got {type(data).__name__}")
             return 
         minItems = schema.get("minItems", 0)
         maxItems = schema.get("maxItems", float("inf"))

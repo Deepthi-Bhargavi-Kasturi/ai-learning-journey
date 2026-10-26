@@ -212,7 +212,7 @@ def next_valid_tokens(partial_json, schema) :
         else :
             return ['"']
 
-    if type.get('type', '') == "string"  :
+    if type and type.get('type', '') == "string"  :
         if stack[-1]["expecting"] == "value_start" :
             return ['"']
         elif stack[-1]["expecting"] == "writing_value" :
@@ -249,13 +249,13 @@ def next_valid_tokens(partial_json, schema) :
             return [',', "}", ":"]
             
     elif last_char == ":" :
-
+        
         typeFetched = find_key_value(schema, key)
         typeFetched = typeFetched.get('type', '') 
 
         if typeFetched == 'string' :
             return ['"']
-        elif typeFetched == 'integer' :
+        elif typeFetched == 'integer' or typeFetched == 'number' :
             return list("0123456789")
         elif typeFetched == 'boolean' :
             return ["true", "false"]
@@ -339,7 +339,7 @@ def next_valid_tokens(partial_json, schema) :
     
 
 
-def demonstrate_constraint_decoding() :
+def demonstrate_constraint_decoding(schema) :
     partial_states = [
         '',
         '{',
@@ -357,7 +357,7 @@ def demonstrate_constraint_decoding() :
     print("-" * 80)
 
     for state in partial_states :
-        valid_next_tokens = next_valid_tokens(state, {})
+        valid_next_tokens = next_valid_tokens(state, schema)
         display = state if state else "(empty)"
         print(f"{display:<45} {valid_next_tokens}")
 

@@ -164,7 +164,6 @@ Write labels independently of predictions where possible. For feature lists, equ
 
 - [Course learning routine](https://aiengineeringfromscratch.com/how-to-learn)
 - [Structured outputs lesson](https://aiengineeringfromscratch.com/lesson?path=phases%2F11-llm-engineering%2F03-structured-outputs&learningPath=applied-ai-engineer)
-- [Exercise guide and working notes](https://chatgpt.com/space/page_8ecc6a5c0a5c81918e039615c5fe60fb)
 - [Pydantic Field reference](https://docs.pydantic.dev/latest/api/fields/#pydantic.fields.Field)
 - [Pydantic default values](https://docs.pydantic.dev/latest/concepts/fields/#default-values)
 - [Pydantic JSON parsing](https://docs.pydantic.dev/latest/concepts/json/)

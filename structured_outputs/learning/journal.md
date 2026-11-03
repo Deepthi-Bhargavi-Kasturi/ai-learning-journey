@@ -125,6 +125,5 @@ At the end of a session, capture where I stopped and the next small action. Move
 
 ## References
 
-- [Working exercise document](https://chatgpt.com/space/page_8ecc6a5c0a5c81918e039615c5fe60fb)
 - [Reusable concepts and documentation links](concepts.md)
 - [Course lesson](https://aiengineeringfromscratch.com/lesson?path=phases%2F11-llm-engineering%2F03-structured-outputs&learningPath=applied-ai-engineer)
